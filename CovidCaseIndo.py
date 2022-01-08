@@ -11,7 +11,7 @@ from PIL import Image
 
 
 #create empty figure and we will creating data into it
-fig = go.Figure()
+graph = go.Figure()
 
 #Make some style using st framework to display it in website
 st.title('Covid 19 Tracking App ')
@@ -33,5 +33,46 @@ List_Data = json_normalize(x.json(),['list_data'])
 #Using DataFrame to filter some records
 top_row = pd.DataFrame({'key':['Pilih Provinsi'], 'jumlah_kasus':['Empty'], 'jumlah_sembuh':['Empty'], 'jumlah_meninggal:':['Empty'], 'jumlah_dirawat' : ['Empty']})
 
-df = pd.concat
+#Mixing Dafaframe and reset the index or values
+df = pd.concat([top_row, List_Data]).reset_index(drop=True)
 
+#Create sidebar for search feature
+st.sidebar.header('Search Section')
+type = st.sidebar.selectbox('Case Type',('Meninggal','Sembuh','Rawat'))
+st.sidebar.subheader('Search by Provence')
+city = st.sidebar.selectbox('City',df.key)
+city2 = st.sidebar.selectbox('Compare with another City',df.key)
+
+if st.sidebar.button('Refresh Data'):
+    raise RerunException()
+
+if city != 'Pilih Provinsi':
+    date_url = 'https://data.covid19.go.id/public/api/prov.json'
+    q = requests.get(date_url)
+    date_data = json_normalize(q.json())
+    last_date = date_data['last_date']
+    kasus = List_Data["jumlah_kasus"]
+    sembuh = List_Data["jumlah_sembuh"]
+    meninggal = List_Data["jumlah_meninggal"]
+    rawat = List_Data["jumlah_dirawat"]
+    st.write("""# Covid Case at """+city+""" Pada """+last_date)
+    st.write("""* **Kasus     : ** """+kasus)
+    st.write("""* **Sembuh    : ** """+sembuh)
+    st.write("""* **Meninggal : ** """+meninggal)
+    st.write("""* **DiRawat   : ** """+rawat)
+    if type == 'Meninggal' :
+        layout = go.Layout(
+            title = city+'\ : '+kasus+ ' Kasus',
+            xaxis = dict(title = "Kasus"),
+            yaxis = dict(title = "Meninggal"),
+        )
+        graph.update_layout(dict1 = layout, overwrite=True)
+        graph.add_trace(go.Scatter(x=kasus, y=meninggal, mode='lines', name=city))
+    elif type == 'Sembuh' :
+        layout = go.Layout(
+            title = city+'\ : '+kasus+ ' Kasus',
+            xaxis = dict(title = "Kasus"),
+            yaxis = dict(title = "Sembuh"),
+        )
+        
+        
