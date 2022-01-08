@@ -25,6 +25,13 @@ st.write("""* **Official Website : ** [covid19.go.id](https://covid19.go.id/)"""
 st.write("""* **Data Source : ** [data.covid19.go.id](https://data.covid19.go.id/)""")
 st.write("""* **Data Example API : ** [Covid19 API] (https://documenter.getpostman.com/view/16605343/Tzm6nwoS#d35f1c32-56d8-4af1-8d6e-ef3397653f99)""")
 
+#Setting URL for the app and read list records from Data
+url = 'https://data.covid19.go.id/public/api/prov.json'
+x = requests.get(url)
+List_Data = json_normalize(x.json(),['list_data'])
 
+#Using DataFrame to filter some records
+top_row = pd.DataFrame({'key':['Pilih Provinsi'], 'jumlah_kasus':['Empty'], 'jumlah_sembuh':['Empty'], 'jumlah_meninggal:':['Empty'], 'jumlah_dirawat' : ['Empty']})
 
-st.sidebar.header('Features')
+df = pd.concat
+
