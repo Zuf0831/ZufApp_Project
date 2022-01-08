@@ -13,5 +13,5 @@ def main (n):
 
 
 if __name__ == "__main__":
-    n = int(input())
+    n = int(input("Input : "))
     main(n)
