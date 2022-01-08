@@ -44,81 +44,82 @@ city = st.sidebar.selectbox('City',df.key)
 city2 = st.sidebar.selectbox('Compare with another City',df.key)
 
 if st.sidebar.button('Refresh Data'):
-    raise RerunException(RerunData())
+    raise RerunException(st.ScriptRequestQueue.RerunData(None))
 
 #Call some data from data list
-date_url = 'https://data.covid19.go.id/public/api/prov.json'
-q = requests.get(date_url)
-date_data = json_normalize(q.json())
-last_date = date_data['last_date']
-kasus = List_Data["jumlah_kasus"]
-sembuh = List_Data["jumlah_sembuh"]
-meninggal = List_Data["jumlah_meninggal"]
-rawat = List_Data["jumlah_dirawat"]
+
 
 if city != 'Pilih Provinsi' :
+    # date_url = 'https://data.covid19.go.id/public/api/prov.json'
+    # q = requests.get(date_url)
+    # date_data = json_normalize(q.json())
+    # last_date = df.date_data[df['key']==city].to_string(index=False)[0]
+    kasus =  List_Data[df['key']==city].to_string(index=False)[2]
+    sembuh = List_Data[df['key']==city].to_string(index=False)[3]
+    meninggal = List_Data[df['key']==city].to_string(index=False)[4]
+    rawat = List_Data[df['key']==city].to_string(index=False)[5]
     if city2 == 'Pilih Provinsi' :
-        st.write("""# Covid Cases at """+city+""" Pada """+last_date)
-        st.write("""* **Kasus     : ** """+kasus)
-        st.write("""* **Sembuh    : ** """+sembuh)
-        st.write("""* **Meninggal : ** """+meninggal)
-        st.write("""* **DiRawat   : ** """+rawat)
-        if type == 'Meninggal' :
-            layout = go.Layout(
-                title = city+'\ : '+kasus+ ' Kasus',
-                xaxis = dict(title = "Kasus"),
-                yaxis = dict(title = "Meninggal"),
-            )
-            graph.update_layout(dict1 = layout, overwrite=True)
-            graph.add_trace(go.Scatter(x=kasus, y=meninggal, mode='lines', name=city))
+        st.write("""# Covid Cases at """+city+""" Pada """)
+        st.write("""* **Kasus     : ** """+str(kasus))
+        st.write("""* **Sembuh    : ** """+str(sembuh))
+        st.write("""* **Meninggal : ** """+str(meninggal))
+        st.write("""* **DiRawat   : ** """+str(rawat))
+        # if type == 'Meninggal' :
+        #     layout = go.Layout(
+        #         title = city+'\ : '+str(kasus)+ ' Kasus',
+        #         xaxis = dict(title = "Kasus"),
+        #         yaxis = dict(title = "Meninggal"),
+        #     )
+        #     graph.update_layout(dict1 = layout, overwrite=True)
+        #     graph.add_trace(go.Scatter(x=kasus, y=meninggal, mode='lines', name=city))
             
-            st.plotly_chart(graph, use_container_width=True)
+        #     st.plotly_chart(graph, use_container_width=True)
                 
-        elif type == 'Sembuh' :
-            layout = go.Layout(
-                title = city+'\ : '+kasus+ ' Kasus',
-                xaxis = dict(title = "Kasus"),
-                yaxis = dict(title = "Sembuh"),
-            )
-            graph.update_layout(dict1 = layout, overwrite=True)
-            graph.add_trace(go.Scatter(x=kasus, y=sembuh, mode='lines', name=city))
+        # elif type == 'Sembuh' :
+        #     layout = go.Layout(
+        #         title = city+'\ : '+str(kasus)+ ' Kasus',
+        #         xaxis = dict(title = "Kasus"),
+        #         yaxis = dict(title = "Sembuh"),
+        #     )
+        #     graph.update_layout(dict1 = layout, overwrite=True)
+        #     graph.add_trace(go.Scatter(x=kasus, y=sembuh, mode='lines', name=city))
             
-            st.plotly_chart(graph, use_container_width=True)
+        #     st.plotly_chart(graph, use_container_width=True)
         
-        elif type == 'Rawat' :
-            layout = go.Layout(
-                title = city+'\ : '+kasus+ ' Kasus',
-                xaxis = dict(title = "Kasus"),
-                yaxis = dict(title = "Rawat"),
-            )
-            graph.update_layout(dict1 = layout, overwrite=True)
-            graph.add_trace(go.Scatter(x=kasus, y=rawat, mode='lines', name=city))
+        # elif type == 'Rawat' :
+        #     layout = go.Layout(
+        #         title = city+'\ : '+str(kasus)+ ' Kasus',
+        #         xaxis = dict(title = "Kasus"),
+        #         yaxis = dict(title = "Rawat"),
+        #     )
+        #     graph.update_layout(dict1 = layout, overwrite=True)
+        #     graph.add_trace(go.Scatter(x=kasus, y=rawat, mode='lines', name=city))
             
-            st.plotly_chart(graph, use_container_width=True)
+        #     st.plotly_chart(graph, use_container_width=True)
     elif city2 != city and city2 != 'Pilih Provinsi' :
-        date_url2 = 'https://data.covid19.go.id/public/api/prov.json'
-        q2 = requests.get(date_url)
-        date_data2 = json_normalize(q2.json())
-        last_date2 = date_data['last_date']
-        kasus2 = List_Data["jumlah_kasus"]
-        sembuh2 = List_Data["jumlah_sembuh"]
-        meninggal2 = List_Data["jumlah_meninggal"]
-        rawat2 = List_Data["jumlah_dirawat"]
-        st.write("""# Covid Cases at """+city2+""" Pada """+last_date2)
-        st.write("""# Covid Cases at """+city+""" Pada """+last_date)
-        st.write("""* **Kasus     : ** """+kasus2+""" di """+city2)
-        st.write("""* **Sembuh    : ** """+sembuh2+""" di """+city2)
-        st.write("""* **Meninggal : ** """+meninggal2+""" di """+city2)
-        st.write("""* **DiRawat   : ** """+rawat2+""" di """+city2)
-        layout = go.Layout(
-                title = city2+'\ : '+kasus2+ ' Kasus',
-                xaxis = dict(title = "Kasus"),
-                yaxis = dict(title = "Meninggal"),
-            )
-        graph.update_layout(dict1 = layout, overwrite=True)
-        graph.add_trace(go.Scatter(x=kasus, y=kasus2, mode='lines', name=city2))
+        # date_url2 = 'https://data.covid19.go.id/public/api/prov.json'
+        # q2 = requests.get(date_url)
+        # date_data2 = json_normalize(q2.json())
+        # last_date = df.date_data[df['key']==city].to_string(index=False)[0]
+        kasus2 =  List_Data[df['key']==city2].to_string(index=False)[2]
+        sembuh2 = List_Data[df['key']==city2].to_string(index=False)[3]
+        meninggal2 = List_Data[df['key']==city2].to_string(index=False)[4]
+        rawat2 = List_Data[df['key']==city2].to_string(index=False)[5]
+        st.write("""# Covid Cases at """+city2+""" Pada """)
+        st.write("""# Covid Cases at """+city+""" Pada """)
+        st.write("""* **Kasus     : ** """+str(kasus2)+""" di """+city2)
+        st.write("""* **Sembuh    : ** """+str(sembuh2)+""" di """+city2)
+        st.write("""* **Meninggal : ** """+str(meninggal2)+""" di """+city2)
+        st.write("""* **DiRawat   : ** """+str(rawat2)+""" di """+city2)
+        # layout = go.Layout(
+        #         title = city2+'\ : '+str(kasus2)+ ' Kasus',
+        #         xaxis = dict(title = "Kasus"),
+        #         yaxis = dict(title = "Meninggal"),
+        #     )
+        # graph.update_layout(dict1 = layout, overwrite=True)
+        # graph.add_trace(go.Scatter(x=kasus, y=kasus2, mode='lines', name=city2))
         
-        st.plotly_chart(graph, use_container_width=True)
+        # st.plotly_chart(graph, use_container_width=True)
             
 
         
