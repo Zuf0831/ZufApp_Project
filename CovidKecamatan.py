@@ -31,10 +31,7 @@ def Kecamatan():
     #Rerun Data or Source Code.
     if st.sidebar.button('Refresh Data'):
         raise Refresh(Try(None))
-
-    #Call some data from data list
-
-
+    
     if city != 'Pilih Provinsi' :
         date_url = 'https://data.covid19.go.id/public/api/prov.json'
         q = requests.get(date_url)

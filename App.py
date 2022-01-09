@@ -3,8 +3,6 @@ from CovidCity import *
 from CovidKecamatan import *
 from Vaccine import *
 
-
-
 #Make some style using st framework to display it in website
 st.title('Covid 19 Tracking App ')
 logo = Image.open('logo.png')
@@ -16,6 +14,7 @@ st.markdown("""Coronavirus is officially a pandemic. Coronavirus disease (COVID-
 st.write("""* **Official Website : ** [covid19.go.id](https://covid19.go.id/)""")
 st.write("""* **Data Source : ** [data.covid19.go.id](https://data.covid19.go.id/)""")
 st.write("""* **Data Example API : ** [Covid19 API] (https://documenter.getpostman.com/view/16605343/Tzm6nwoS#d35f1c32-56d8-4af1-8d6e-ef3397653f99)""")
+st.write("""* **Risk Level : ** [Here] (https://covid19.go.id/peta-risiko)""")
 
 st.sidebar.header('Covid Case in Indonesia')
 type = st.sidebar.selectbox('Features',('Default','Provinsi','Vaksinasi','Kecamatan'))
