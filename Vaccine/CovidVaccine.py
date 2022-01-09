@@ -23,13 +23,11 @@ def Vaksin():
     #Create sidebar for search feature
     st.sidebar.subheader('Data Type')
     type = st.sidebar.selectbox('Choose',('Default','Pemeriksaan','Sudah Vaksin'))
-    
-    
 
     #Control the input
     if type == 'Sudah Vaksin' :
         jenis_vak = st.sidebar.selectbox('Jenis Vaksin',('Default','Vaksin 1','Vaksin 2'))
-        last_date = Date()
+        last_date = Date() #Get last date
         if jenis_vak == 'Vaksin 1' :
             vaksin1 = vak1()
             total_vak1 = tot_vak1()
@@ -52,8 +50,9 @@ def Vaksin():
         
     
     elif type == "Pemeriksaan"  :
+        #Create Spesific Spesimen
         jenis = st.sidebar.selectbox('Jenis Spesimen',('Default','PCR','Antigen'))
-        data_update = Date2()
+        data_update = Date2() #Get Last Date
         if jenis == 'PCR' :
             data_add = add()
             data_people = people()
