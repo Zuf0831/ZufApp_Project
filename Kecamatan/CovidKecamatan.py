@@ -21,7 +21,11 @@ def Kecamatan():
     kec2 = st.sidebar.selectbox('Compare with another Kecamatan',df.title)
     
     if kec != 'Pilih Kecamatan' :
-        
+            # TEST 1
+        if kec2 == 'Pilih Kecamatan' :
+            # TEST 2 
+        elif kec2 != kec and kec2 != 'Pilih Kecamatan' :
+            #TEst 3
     
         
             
