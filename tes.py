@@ -10,16 +10,16 @@ d = json_normalize(x.json())
 # z = d['jumlah_kasus']
 # print(z)
 
-to_find = input('Cari kasus by kota : ')
+# to_find = input('Cari kasus by kota : ')
 
-def search_case(citu):
-    for item in d['list_data'] :
-        for s in range(len(item)):
-            city = item[s]["key"]
-            kasus = item[s]["jumlah_kasus"]
-            if citu == city :
-                return kasus
+# def search_case(citu):
+#     for item in d['list_data'] :
+#         for s in range(len(item)):
+#             city = item[s]["key"]
+#             kasus = item[s]["jumlah_kasus"]
+#             if citu == city :
+#                 return kasus
 
-print(" Hasil : ", search_case(to_find))
-
-        
+# print(" Hasil : ", search_case(to_find))
+for key in d['last_date'] :
+    print(key)
