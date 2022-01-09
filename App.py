@@ -17,7 +17,7 @@ st.write("""* **Data Example API : ** [Covid19 API] (https://documenter.getpostm
 st.write("""* **Risk Level : ** [Here] (https://covid19.go.id/peta-risiko)""")
 
 st.sidebar.header('Covid Case in Indonesia')
-type = st.sidebar.selectbox('Features',('Default','Provinsi','Vaksinasi','Kecamatan'))
+type = st.sidebar.selectbox('Choose',('Default','Provinsi','Vaksinasi','Kecamatan'))
 
 if type == 'Provinsi' :
     City()
@@ -25,3 +25,8 @@ elif type == 'Kecamatan' :
     Kecamatan()
 elif type == 'Vaksinasi' :
     Vaksin()
+
+if st.sidebar.button('Refresh Data'):
+        raise Refresh(Try(None))      
+st.sidebar.subheader("""Created by Zuf : [Git Hub Repo](https://github.com/Zuf0831/ZufApp_Project.git)""")
+st.sidebar.image('kid.jpg', width = 300)

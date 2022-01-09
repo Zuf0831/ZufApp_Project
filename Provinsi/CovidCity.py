@@ -4,11 +4,10 @@ import requests
 from pandas import json_normalize
 from streamlit.script_runner import RerunException as Refresh
 from streamlit.script_request_queue import RerunData as Try
-from PIL import Image
-from kasus import *
-from death import *
-from sembuh import *
-from rawat import *
+from Provinsi.kasus import *
+from Provinsi.death import *
+from Provinsi.sembuh import *
+from Provinsi.rawat import *
 
 def City(): 
     #Setting URL for the app and read list records from Data
@@ -26,12 +25,6 @@ def City():
     st.sidebar.subheader('Search by Provence')
     city = st.sidebar.selectbox('City',df.key)
     city2 = st.sidebar.selectbox('Compare with another City',df.key)
-
-    #Rerun Data or Source Code.
-    if st.sidebar.button('Refresh Data'):
-        raise Refresh(Try(None))
-
-    #Call some data from data list
 
 
     if city != 'Pilih Provinsi' :
@@ -67,8 +60,7 @@ def City():
             st.write("""* **Meninggal : ** """+str(meninggal2))
             st.write("""* **DiRawat   : ** """+str(rawat2))
             
-    st.sidebar.subheader("""Created by Zuf : [Git Hub Repo](https://github.com/Zuf0831/ZufApp_Project.git)""")
-    st.sidebar.image('kid.jpg', width = 300)
+    
         
             
 
