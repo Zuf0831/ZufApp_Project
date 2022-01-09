@@ -12,6 +12,11 @@ from Vaccine.pcr_add import *
 from Vaccine.pcr_people import *
 from Vaccine.total_pcr_add import *
 from Vaccine.total_pcr_people import *
+from Vaccine.anti_add import *
+from Vaccine.anti_people import *
+from Vaccine.total_anti_add import *
+from Vaccine.total_anti_people import *
+from Vaccine.lastDate2 import *
 
 
 def Vaksin(): 
@@ -48,17 +53,27 @@ def Vaksin():
     
     elif type == "Pemeriksaan"  :
         jenis = st.sidebar.selectbox('Jenis Spesimen',('Default','PCR','Antigen'))
+        data_update = Date2()
         if jenis == 'PCR' :
             data_add = add()
             data_people = people()
             total_data_add = tot_add()
             total_data_people = tot_people()
             st.write("""# Spesimen PCR""")
-            # st.write(""" Update : """+last_date)
+            st.write(""" Update : """+data_update)
             st.write("""* **Penambahan Jumlah Spesimen : **"""+str(data_add))
             st.write("""* **Penambahan Penerima PCR    : **"""+str(data_people)+""" Pasien""")
             st.write("""* **Total Jumlah Spesimen : **"""+str(total_data_add))
             st.write("""* **Total Penerima PCR    : **"""+str(total_data_people)+""" Pasien""")
         elif jenis == 'Antigen' :
-            st.write('TEST')
+            data_add2 = add_2()
+            data_people2 = people_2()
+            total_data_add2 = tot_add_2()
+            total_data_people2 = tot_people_2()
+            st.write("""# Spesimen ANTIGEN""")
+            st.write(""" Update : """+data_update)
+            st.write("""* **Penambahan Jumlah Spesimen : **"""+str(data_add2))
+            st.write("""* **Penambahan Penerima Antigen    : **"""+str(data_people2)+""" Pasien""")
+            st.write("""* **Total Jumlah Spesimen : **"""+str(total_data_add2))
+            st.write("""* **Total Penerima Antigen    : **"""+str(total_data_people2)+""" Pasien""")
         
