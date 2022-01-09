@@ -1,28 +1,13 @@
 import streamlit as st 
 import pandas as pd 
-import numpy as np 
 import requests
 from pandas import json_normalize
 from streamlit.script_runner import RerunException as Refresh
 from streamlit.script_request_queue import RerunData as Try
 from PIL import Image
-from kasus import *
-from death import *
-from sembuh import *
-from rawat import *
+
 
 def Vaksin(): 
-    #Setting URL for the app and read list records from Data
-    url = 'https://data.covid19.go.id/public/api/prov.json'
-    x = requests.get(url)
-    List_Data = json_normalize(x.json(),['list_data'])
-
-    #Using DataFrame to filter some records
-    top_row = pd.DataFrame({'key':['Pilih Provinsi'], 'jumlah_kasus':['Empty'], 'jumlah_sembuh':['Empty'], 'jumlah_meninggal:':['Empty'], 'jumlah_dirawat' : ['Empty']})
-
-    #Mixing Dafaframe and reset the index or values
-    df = pd.concat([top_row, List_Data]).reset_index(drop=True)
-
     #Create sidebar for search feature
     st.sidebar.subheader('Type')
     type = st.sidebar.selectbox('Features',('Default','Pemeriksaan','Vaksinasi'))
@@ -31,10 +16,8 @@ def Vaksin():
     if st.sidebar.button('Refresh Data'):
         raise Refresh(Try(None))
 
-    #Call some data from data list
-
-
-    if type != 'Vaksinasi' :
+    #Control the input
+    if type == 'Vaksinasi' :
         url = 'https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json'
         x = requests.get(url)
         d = json_normalize(x.json()['vaksinasi'])
@@ -68,7 +51,9 @@ def Vaksin():
             st.write("""# Vaksin 2""")
             st.write("""* **Penambahan : **"""+str(vak2))
             st.write("""* **Total      : **"""+str(total_vak2))
-        
+    
+    elif type == "Pemeriksaan"  :
+        st.write('TEST')
             
     st.sidebar.subheader("""Created by Zuf : [Git Hub Repo](https://github.com/Zuf0831/ZufApp_Project.git)""")
     st.sidebar.image('kid.jpg', width = 300)

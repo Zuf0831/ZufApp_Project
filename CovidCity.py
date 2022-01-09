@@ -1,6 +1,5 @@
 import streamlit as st 
 import pandas as pd 
-import numpy as np 
 import requests
 from pandas import json_normalize
 from streamlit.script_runner import RerunException as Refresh

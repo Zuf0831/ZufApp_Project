@@ -5,7 +5,7 @@ from pandas import json_normalize
 
 url = 'https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json'
 x = requests.get(url)
-d = json_normalize(x.json()['vaksinasi'])
+d = json_normalize(x.json())
 # cd = pd.read_json(d).head()
 # z = d['jumlah_kasus']
 # print(z)
