@@ -24,10 +24,9 @@ def Vaksin():
     df = pd.concat([top_row, List_Data]).reset_index(drop=True)
 
     #Create sidebar for search feature
-    st.sidebar.subheader('Vaksin')
-    city = st.sidebar.selectbox('City',df.key)
-    city2 = st.sidebar.selectbox('Compare with another Kecamatan',df.key)
-
+    st.sidebar.subheader('Type')
+    type = st.sidebar.selectbox('Features',('Default','Pemeriksaan','Vaksinasi'))
+    
     #Rerun Data or Source Code.
     if st.sidebar.button('Refresh Data'):
         raise Refresh(Try(None))
@@ -35,38 +34,41 @@ def Vaksin():
     #Call some data from data list
 
 
-    if city != 'Pilih Provinsi' :
-        date_url = 'https://data.covid19.go.id/public/api/prov.json'
-        q = requests.get(date_url)
-        date = json_normalize(q.json())
-        for key in date['last_date']:
-            time = key
-        kasus =  case(city)
-        sembuh = alive(city)
-        meninggal = death(city)
-        rawat = hospital(city)
-        if city2 == 'Pilih Provinsi' :
-            st.write("""# Covid Cases at """+city+""" Pada """+time)
-            st.write("""* **Kasus     : ** """+str(kasus))
-            st.write("""* **Sembuh    : ** """+str(sembuh))
-            st.write("""* **Meninggal : ** """+str(meninggal))
-            st.write("""* **DiRawat   : ** """+str(rawat))
+    if type != 'Vaksinasi' :
+        url = 'https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json'
+        x = requests.get(url)
+        d = json_normalize(x.json()['vaksinasi'])
+        jenis_vak = st.sidebar.selectbox('Jenis Vaksin',('Default','Vaksin 1','Vaksin 2'))
+        if jenis_vak == 'Vaksin 1' :
+            data1 = d['penambahan']
+            total_data1 = d['total']
+            #Get data for Penambahan Vaksin 1 
+            for item in data1['jumlah_vaksinasi_1'] :
+                vak1 = item
+            #Get total data for vaksin
+            for item in total_data1['jumlah_vaksinasi_1'] :
+                total_vak1 = item
                 
-        elif city2 != city and city2 != 'Pilih Provinsi' :
-            kasus2 =  case(city2)
-            sembuh2 = alive(city2)
-            meninggal2 = death(city2)
-            rawat2 = hospital(city2)
-            st.write("""# Covid Cases at """+city+""" Pada """+time)
-            st.write("""* **Kasus     : ** """+str(kasus))
-            st.write("""* **Sembuh    : ** """+str(sembuh))
-            st.write("""* **Meninggal : ** """+str(meninggal))
-            st.write("""* **DiRawat   : ** """+str(rawat))
-            st.write("""# Covid Cases at """+city2+""" Pada """+time)
-            st.write("""* **Kasus     : ** """+str(kasus2))
-            st.write("""* **Sembuh    : ** """+str(sembuh2))
-            st.write("""* **Meninggal : ** """+str(meninggal2))
-            st.write("""* **DiRawat   : ** """+str(rawat2))
+            #Display Vaccine Data 1
+            st.write("""# Vaksin 1""")
+            st.write("""* **Penambahan : **"""+str(vak1))
+            st.write("""* **Total      : **"""+str(total_vak1))
+            
+        elif jenis_vak == 'Vaksin 2' :
+            data2 = d['penambahan']
+            total_data2 = d['total']
+            #Get data for Penambahan Vaksin 1 
+            for item in data2['jumlah_vaksinasi_2'] :
+                vak2 = item
+            #Get total data for vaksin
+            for item in total_data2['jumlah_vaksinasi_2'] :
+                total_vak2 = item
+            
+            #Display Vaccine Data 2
+            st.write("""# Vaksin 2""")
+            st.write("""* **Penambahan : **"""+str(vak2))
+            st.write("""* **Total      : **"""+str(total_vak2))
+        
             
     st.sidebar.subheader("""Created by Zuf : [Git Hub Repo](https://github.com/Zuf0831/ZufApp_Project.git)""")
     st.sidebar.image('kid.jpg', width = 300)
