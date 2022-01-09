@@ -3,9 +3,9 @@ import requests
 from pandas import json_normalize
 
 
-url = 'https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json'
+url = 'https://data.covid19.go.id/public/api/kecamatan_rawan.json'
 x = requests.get(url)
-d = json_normalize(x.json()['pemeriksaan']['penambahan'])
+d = json_normalize(x.json())
 # cd = pd.read_json(d).head()
 # z = d['jumlah_kasus']
 # print(z)
@@ -21,5 +21,4 @@ d = json_normalize(x.json()['pemeriksaan']['penambahan'])
 #                 return kasus
 
 # print(" Hasil : ", search_case(to_find))
-for item in d['jumlah_spesimen_pcr_tcm']:
-    print(item)
+print(d)
