@@ -2,6 +2,7 @@ import streamlit as st
 from Provinsi.CovidCity import *
 from Kecamatan.CovidKecamatan import *
 from Vaccine.CovidVaccine import *
+from RiskCity.RiskCity import *
 
 #Make some style using st framework to display it in website
 st.title('Covid 19 Tracking App ')
@@ -16,7 +17,7 @@ st.write("""* **Data Example API : ** [Covid19 API] (https://documenter.getpostm
 st.write("""* **Risk Level : ** [Here] (https://covid19.go.id/peta-risiko)""")
 
 st.sidebar.header('Covid Case in Indonesia')
-type = st.sidebar.selectbox('Choose',('Default','Provinsi','Vaksinasi','Kecamatan'))
+type = st.sidebar.selectbox('Choose',('Default','Provinsi','Vaksinasi','Kecamatan','Kota'))
 
 if type == 'Provinsi' :
     City()
@@ -24,6 +25,8 @@ elif type == 'Kecamatan' :
     Kecamatan()
 elif type == 'Vaksinasi' :
     Vaksin()
+elif type == 'Kota' :
+    
 
 if st.sidebar.button('Refresh Data'):
         raise Refresh(Try(None))      
