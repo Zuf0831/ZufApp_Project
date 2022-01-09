@@ -1,8 +1,4 @@
 import streamlit as st 
-import pandas as pd 
-from pandas import json_normalize
-from streamlit.script_runner import RerunException as Refresh
-from streamlit.script_request_queue import RerunData as Try
 from Vaccine.Vak1 import *
 from Vaccine.totVak1 import *
 from Vaccine.Vak2 import *
@@ -34,7 +30,7 @@ def Vaksin():
                 
             #Display Vaccine Data 1
             st.write("""# Vaksin 1""")
-            st.write(""" Update : """+last_date)
+            st.write("""### Update : """+last_date)
             st.write("""* **Penambahan : **"""+str(vaksin1)+""" Pasien""")
             st.write("""* **Total      : **"""+str(total_vak1)+""" Pasien""")
         
@@ -44,7 +40,7 @@ def Vaksin():
                 
             #Display Vaccine Data 2
             st.write("""# Vaksin 2""")
-            st.write(""" Update : """+last_date)
+            st.write("""### Update : """+last_date)
             st.write("""* **Penambahan : **"""+str(vaksin2)+""" Pasien""")
             st.write("""* **Total      : **"""+str(total_vak2)+""" Pasien""")
         
@@ -59,7 +55,7 @@ def Vaksin():
             total_data_add = tot_add()
             total_data_people = tot_people()
             st.write("""# Spesimen PCR""")
-            st.write(""" Update : """+data_update)
+            st.write("""### Update : """+data_update)
             st.write("""* **Penambahan Jumlah Spesimen : **"""+str(data_add))
             st.write("""* **Penambahan Penerima PCR    : **"""+str(data_people)+""" Pasien""")
             st.write("""* **Total Jumlah Spesimen : **"""+str(total_data_add))
@@ -70,7 +66,7 @@ def Vaksin():
             total_data_add2 = tot_add_2()
             total_data_people2 = tot_people_2()
             st.write("""# Spesimen ANTIGEN""")
-            st.write(""" Update : """+data_update)
+            st.write("""### Update : """+data_update)
             st.write("""* **Penambahan Jumlah Spesimen : **"""+str(data_add2))
             st.write("""* **Penambahan Penerima Antigen    : **"""+str(data_people2)+""" Pasien""")
             st.write("""* **Total Jumlah Spesimen : **"""+str(total_data_add2))

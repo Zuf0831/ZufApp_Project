@@ -1,4 +1,3 @@
-import pandas as pd
 import requests
 from pandas import json_normalize
 

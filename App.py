@@ -1,12 +1,12 @@
 import streamlit as st 
-from Provinsi.CovidCity import *
+from Provinsi.CovidProv import *
 from Kecamatan.CovidKecamatan import *
 from Vaccine.CovidVaccine import *
 from RiskCity.RiskCity import *
 
 #Make some style using st framework to display it in website
-st.title('Covid 19 Tracking App ')
-st.image('logo.png', width = 300)
+st.title('📱 Covid 19 Status Check App 📱 ')
+st.image('logo.png', width = 200)
 st.markdown("""Coronavirus is officially a pandemic. Coronavirus disease (COVID-19) is an infectious disease caused by the SARS-CoV-2 virus.
                 Most people who fall sick with COVID-19 will experience mild to moderate symptoms and recover without special treatment. However, some will become seriously ill and require medical attention.
                 This app created to show and check covid cases status in indonesia!
@@ -20,13 +20,13 @@ st.sidebar.header('Covid Case in Indonesia')
 type = st.sidebar.selectbox('Choose',('Default','Provinsi','Vaksinasi','Kecamatan','Kota'))
 
 if type == 'Provinsi' :
-    City()
+    Provence()
 elif type == 'Kecamatan' :
     Kecamatan()
 elif type == 'Vaksinasi' :
     Vaksin()
 elif type == 'Kota' :
-    
+    City()
 
 if st.sidebar.button('Refresh Data'):
         raise Refresh(Try(None))      
