@@ -1,7 +1,7 @@
 import streamlit as st 
-from CovidCity import *
-from CovidKecamatan import *
-from Vaccine import *
+from Provinsi.CovidCity import *
+from Kecamatan.CovidKecamatan import *
+from Vaccine.CovidVaccine import *
 
 #Make some style using st framework to display it in website
 st.title('Covid 19 Tracking App ')
