@@ -8,6 +8,7 @@ from plotly.offline import iplot
 import plotly.graph_objs as go
 import plotly.express as px
 from PIL import Image
+from input_case import *
 
 
 #create empty figure and we will creating data into it
@@ -54,16 +55,16 @@ if city != 'Pilih Provinsi' :
     # q = requests.get(date_url)
     # date_data = json_normalize(q.json())
     # last_date = df.date_data[df['key']==city].to_string(index=False)[0]
-    kasus =  List_Data[df['key']==city].to_string(index=False)[2]
-    sembuh = List_Data[df['key']==city].to_string(index=False)[3]
-    meninggal = List_Data[df['key']==city].to_string(index=False)[4]
-    rawat = List_Data[df['key']==city].to_string(index=False)[5]
+    kasus =  search_case(city)
+    # sembuh = List_Data[df['key']==city].to_string(index=False)[3]
+    # meninggal = List_Data[df['key']==city].to_string(index=False)[4]
+    # rawat = List_Data[df['key']==city].to_string(index=False)[5]
     if city2 == 'Pilih Provinsi' :
         st.write("""# Covid Cases at """+city+""" Pada """)
         st.write("""* **Kasus     : ** """+str(kasus))
-        st.write("""* **Sembuh    : ** """+str(sembuh))
-        st.write("""* **Meninggal : ** """+str(meninggal))
-        st.write("""* **DiRawat   : ** """+str(rawat))
+        # st.write("""* **Sembuh    : ** """+str(sembuh))
+        # st.write("""* **Meninggal : ** """+str(meninggal))
+        # st.write("""* **DiRawat   : ** """+str(rawat))
         # if type == 'Meninggal' :
         #     layout = go.Layout(
         #         title = city+'\ : '+str(kasus)+ ' Kasus',
@@ -101,16 +102,16 @@ if city != 'Pilih Provinsi' :
         # q2 = requests.get(date_url)
         # date_data2 = json_normalize(q2.json())
         # last_date = df.date_data[df['key']==city].to_string(index=False)[0]
-        kasus2 =  List_Data[df['key']==city2].to_string(index=False)[2]
-        sembuh2 = List_Data[df['key']==city2].to_string(index=False)[3]
-        meninggal2 = List_Data[df['key']==city2].to_string(index=False)[4]
-        rawat2 = List_Data[df['key']==city2].to_string(index=False)[5]
+        kasus2 =  search_case(city2)
+        # sembuh2 = List_Data[df['key']==city2].to_string(index=False)[3]
+        # meninggal2 = List_Data[df['key']==city2].to_string(index=False)[4]
+        # rawat2 = List_Data[df['key']==city2].to_string(index=False)[5]
         st.write("""# Covid Cases at """+city2+""" Pada """)
         st.write("""# Covid Cases at """+city+""" Pada """)
         st.write("""* **Kasus     : ** """+str(kasus2)+""" di """+city2)
-        st.write("""* **Sembuh    : ** """+str(sembuh2)+""" di """+city2)
-        st.write("""* **Meninggal : ** """+str(meninggal2)+""" di """+city2)
-        st.write("""* **DiRawat   : ** """+str(rawat2)+""" di """+city2)
+        # st.write("""* **Sembuh    : ** """+str(sembuh2)+""" di """+city2)
+        # st.write("""* **Meninggal : ** """+str(meninggal2)+""" di """+city2)
+        # st.write("""* **DiRawat   : ** """+str(rawat2)+""" di """+city2)
         # layout = go.Layout(
         #         title = city2+'\ : '+str(kasus2)+ ' Kasus',
         #         xaxis = dict(title = "Kasus"),
