@@ -8,6 +8,10 @@ from Vaccine.totVak1 import *
 from Vaccine.Vak2 import *
 from Vaccine.totVak2 import *
 from Vaccine.lastDate import *
+from Vaccine.pcr_add import *
+from Vaccine.pcr_people import *
+from Vaccine.total_pcr_add import *
+from Vaccine.total_pcr_people import *
 
 
 def Vaksin(): 
@@ -43,8 +47,18 @@ def Vaksin():
         
     
     elif type == "Pemeriksaan"  :
-        st.write('TEST')
-        
-           
-
+        jenis = st.sidebar.selectbox('Jenis Spesimen',('Default','PCR','Antigen'))
+        if jenis == 'PCR' :
+            data_add = add()
+            data_people = people()
+            total_data_add = tot_add()
+            total_data_people = tot_people()
+            st.write("""# Spesimen PCR""")
+            # st.write(""" Update : """+last_date)
+            st.write("""* **Penambahan Jumlah Spesimen : **"""+str(data_add))
+            st.write("""* **Penambahan Penerima PCR    : **"""+str(data_people)+""" Pasien""")
+            st.write("""* **Total Jumlah Spesimen : **"""+str(total_data_add))
+            st.write("""* **Total Penerima PCR    : **"""+str(total_data_people)+""" Pasien""")
+        elif jenis == 'Antigen' :
+            st.write('TEST')
         
