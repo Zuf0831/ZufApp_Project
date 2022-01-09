@@ -4,21 +4,19 @@ from pandas import json_normalize
 
 
 url = 'https://data.covid19.go.id/public/api/kecamatan_rawan.json'
+# url = 'https://data.covid19.go.id/public/api/prov.json'
 x = requests.get(url)
-d = json_normalize(x.json())
 # cd = pd.read_json(d).head()
 # z = d['jumlah_kasus']
 # print(z)
+d = x.json()
 
-# to_find = input('Cari kasus by kota : ')
-
-# def search_case(citu):
-#     for item in d['list_data'] :
-#         for s in range(len(item)):
-#             city = item[s]["key"]
-#             kasus = item[s]["jumlah_kasus"]
-#             if citu == city :
-#                 return kasus
-
-# print(" Hasil : ", search_case(to_find))
-print(d)
+to_find = input('Cari Kecamatan : ')
+def search(data) :
+    for item in d:
+        x = item['title']
+        z = item['kategori']
+        if x == data :
+            return z
+                           
+print("Hasil : ",search(to_find))
