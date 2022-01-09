@@ -5,12 +5,11 @@ from pandas import json_normalize
 
 url = 'https://data.covid19.go.id/public/api/kecamatan_rawan.json'
 x = requests.get(url)
-d = json_normalize(x.json())
+d = x.json()
 
-def kate(input):
-    for item in d :
-        for s in range(len(item)):
-            city = item[s]["title"]
-            kategori = item[s]["kategori"]
-            if input == city :
-                return kategori
+def kate_data(input):
+    for item in d:
+        kec = item['title']
+        kate = item['kategori']
+        if kec == input :
+            return kate

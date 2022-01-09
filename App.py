@@ -5,8 +5,7 @@ from Vaccine.CovidVaccine import *
 
 #Make some style using st framework to display it in website
 st.title('Covid 19 Tracking App ')
-logo = Image.open('logo.png')
-st.image(logo, width = 300)
+st.image('logo.png', width = 300)
 st.markdown("""Coronavirus is officially a pandemic. Coronavirus disease (COVID-19) is an infectious disease caused by the SARS-CoV-2 virus.
                 Most people who fall sick with COVID-19 will experience mild to moderate symptoms and recover without special treatment. However, some will become seriously ill and require medical attention.
                 This app created to show and check covid cases status in indonesia!

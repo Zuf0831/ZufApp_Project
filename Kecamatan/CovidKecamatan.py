@@ -4,7 +4,7 @@ import requests
 from pandas import json_normalize
 from streamlit.script_runner import RerunException as Refresh
 from streamlit.script_request_queue import RerunData as Try
-
+from Kecamatan.category import *
 
 def Kecamatan(): 
     #Setting URL for the app and read list records from Data
@@ -21,11 +21,19 @@ def Kecamatan():
     kec2 = st.sidebar.selectbox('Compare with another Kecamatan',df.title)
     
     if kec != 'Pilih Kecamatan' :
-            # TEST 1
+        kategori = kate_data(kec)
         if kec2 == 'Pilih Kecamatan' :
-            # TEST 2 
+            st.write("""# Result """)
+            st.write("""* **Kecamatan     : ** """+str(kec))
+            st.write("""* **Kasus     : ** """+str(kategori))
         elif kec2 != kec and kec2 != 'Pilih Kecamatan' :
-            #TEst 3
+            kategori2 = kate_data(kec2)
+            st.write("""# Result """)
+            st.write("""* **Kecamatan     : ** """+str(kec))
+            st.write("""* **Kasus     : ** """+str(kategori))
+            st.write("""-------------------------""")
+            st.write("""* **Kecamatan     : ** """+str(kec2))
+            st.write("""* **Kasus     : ** """+str(kategori2))
     
         
             
