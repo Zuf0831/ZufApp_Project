@@ -65,4 +65,4 @@ d = json_normalize(x.json())
 
 ## Covid App Demo 
 Example
-![](app. gif)
+![](app.gif)
